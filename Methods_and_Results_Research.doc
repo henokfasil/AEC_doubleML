@@ -1,0 +1,35 @@
+{\rtf1\ansi\deff0
+{\b 3. Methodology}\par
+We analyze a panel of 248 observations (2015–2022) covering multiple countries. Variables include measures of public–private partnership and green bond issuance (PPP_T, PPP_I, GB_T, GB_I) along with financial indicators such as domestic credit to manufacturing (DCM), foreign direct investment (FDI), and green finance (GFCFM). To reduce skewness, we use natural logarithms for all economic variables.\par
+The treatment period begins in 2019. We define T=1 for years ≥ 2019 (post‑policy) and Post=1 if a country has ever issued PPPs or green bonds. Their interaction DID=T×Post captures the effect of treatment exposure. The canonical difference‑in‑differences (DiD) model regresses the log outcome Y on Post, T and DID, with heteroscedasticity‑consistent (HC1) standard errors. Parallel trends between treated and control groups are assumed.\par
+To address non‑linear confounding, we employ Double Machine Learning (DML) in a partial linear regression framework. DML estimates two nuisance functions—the conditional expectation of the outcome E[Y|X] and the conditional expectation of treatment E[DID|X]—using machine‑learning algorithms, then regresses the residualized outcome on the residualized treatment. This orthogonalization combined with sample‑splitting and cross‑fitting reduces overfitting bias and yields consistent estimates.\par
+We use three learners for the nuisance functions: Random Forests (500 trees), Lasso and Ridge regressions via cross‑validated glmnet. Five‑fold cross‑fitting is employed. Covariates X include ln_PPP_I, ln_GB_I, ln_DCM, ln_GFCFM, ln_MFDI, Year and country_num. For each outcome Y, its own log is excluded from X to avoid leakage.\par
+{\b 4. Results}\par
+Table 1 presents the estimated treatment effects (coefficients, standard errors, and 95% confidence intervals) for each outcome and method. Coefficients for the log outcomes can be interpreted as approximate percentage changes.\par
+{\b Table 1: Estimated treatment effects on log outcomes}\par
+Outcome | Method | Coefficient | SE | 95% CI | p-value\par
+ln_MIVA | Traditional DiD (log target) | 0.2485 | 0.1459 | [-0.0374, 0.5344] | 0.0884\par
+ln_MIVA | DML (Lasso) | 0.2303 | 0.1047 | [0.0251, 0.4356] | 0.0279\par
+ln_MIVA | DML (Ridge) | 0.2292 | 0.1056 | [0.0221, 0.4362] | 0.0301\par
+ln_MIVA | DML (Random Forest) | 12.3494 | 7.9205 | [-3.1748, 27.8735] | 0.119\par
+ln_DCM | Traditional DiD (log target) | 0.2713 | 0.2004 | [-0.1214, 0.664] | 0.1757\par
+ln_DCM | DML (Lasso) | 0.1571 | 0.0673 | [0.0252, 0.2891] | 0.0196\par
+ln_DCM | DML (Ridge) | 0.1499 | 0.071 | [0.0108, 0.289] | 0.0346\par
+ln_DCM | DML (Random Forest) | 34.6018 | 12.362 | [10.3722, 58.8315] | 0.0051\par
+ln_GFCFM | Traditional DiD (log target) | 0.3836 | 0.4948 | [-0.5862, 1.3534] | 0.4382\par
+ln_GFCFM | DML (Lasso) | -0.3025 | 0.1341 | [-0.5653, -0.0398] | 0.024\par
+ln_GFCFM | DML (Ridge) | -0.3077 | 0.1378 | [-0.5779, -0.0376] | 0.0256\par
+ln_GFCFM | DML (Random Forest) | 4.1235 | 8.7465 | [-13.0196, 21.2666] | 0.6373\par
+ln_MFDI | Traditional DiD (log target) | 0.5845 | 0.4671 | [-0.3311, 1.5001] | 0.2109\par
+ln_MFDI | DML (Lasso) | 0.1693 | 0.1856 | [-0.1945, 0.5331] | 0.3617\par
+ln_MFDI | DML (Ridge) | 0.1509 | 0.1932 | [-0.2277, 0.5296] | 0.4347\par
+ln_MFDI | DML (Random Forest) | 20.9866 | 21.7145 | [-21.5738, 63.5469] | 0.3338\par
+\par
+We discuss each outcome in turn.\par
+{\b ln_MIVA (Manufacturing Value Added)}: The standard DiD coefficient is positive (β≈0.25) but not statistically significant. Lasso and Ridge DML estimates (≈0.23) are significant, implying a roughly 23% increase in manufacturing value added following PPP/GB adoption. The Random Forest estimate is large and imprecise, reflecting model instability.\par
+{\b ln_DCM (Domestic Credit to Manufacturing)}: The DiD estimate (β≈0.27) is not significant. Lasso and Ridge DML produce significant positive effects (~0.15), suggesting treated countries experience about a 15% increase in domestic credit. The Random Forest model yields an implausibly large estimate and should be interpreted cautiously.\par
+{\b ln_GFCFM (Green Finance)}: DiD finds no significant effect. Lasso and Ridge DML estimates (~−0.30) are significant and negative, indicating PPP/GB exposure may reduce green finance flows, perhaps due to substitution effects. The Random Forest estimate is not statistically distinguishable from zero.\par
+{\b ln_MFDI (Foreign Direct Investment)}: Neither the DiD nor DML estimates show a statistically significant effect. Lasso and Ridge DML produce small positive coefficients (≈0.17 and 0.15) with wide confidence intervals.\par
+Overall, the DML results reveal that PPP/GB issuance is associated with higher manufacturing value added and domestic credit, but may crowd out green finance flows. These findings underscore the importance of flexible nuisance modelling and cross‑fitting for uncovering nuanced treatment effects beyond the standard DiD framework.\par
+Generated on 2025-09-09 21:30 UTC\par
+}
