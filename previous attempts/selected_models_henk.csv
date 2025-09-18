@@ -1,5 +1,0 @@
-Target,Learner,R2_Y,AUC_D,Composite,Coefficient,Std_Error,P_value,CI_Lower,CI_Upper,CF_SD
-ln_MIVA,RF,NA,NA,NA,NA,NA,NA,NA,NA,NA
-ln_DCM,RF,NA,NA,NA,NA,NA,NA,NA,NA,NA
-ln_GFCFM,RF,NA,NA,NA,NA,NA,NA,NA,NA,NA
-ln_MFDI,RF,NA,NA,NA,NA,NA,NA,NA,NA,NA
