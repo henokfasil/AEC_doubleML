@@ -41,15 +41,7 @@ This repository contains analysis and code for applying Double Machine Learning 
 
 
 
-🛠 How to Use
 
-
-
-1\. Clone the repository:
-
-&nbsp;  ```bash
-
-&nbsp;  git clone https://github.com/henokfasil1/AEC\_doubleML.git
 
 
 
