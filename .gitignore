@@ -1,0 +1,45 @@
+# =============================================================================
+# GITIGNORE - Files NOT to upload to GitHub
+# =============================================================================
+
+# PRIVATE DATA - Do not upload
+final_final.csv
+final_final_updated.csv
+*.RData
+
+# MANUSCRIPT - Keep private until published
+CLEAN.docx
+*.docx
+
+# TEMPORARY FILES
+*.log
+*.txt
+*.tmp
+~$*.docx
+
+# R ENVIRONMENT
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# PYTHON
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# SYSTEM FILES
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OTHER
+*.zip
+*.tar.gz
